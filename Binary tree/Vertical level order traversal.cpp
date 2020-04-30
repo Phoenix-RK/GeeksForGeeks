@@ -140,6 +140,52 @@ struct Node
  
 
 */
+/*
+
+With map passing
+
+void genVerticalOrder(Node *root,int hd,int d,map<pair<int,int>,vector<int>>&m)
+{
+    if(root==NULL)
+        return ;
+    m[make_pair(hd,d)].push_back(root->data);
+    
+    genVerticalOrder(root->left,hd-1,d+1,m);
+    genVerticalOrder(root->right,hd+1,d+1,m);
+    
+    
+}
+
+void verticalOrder(Node *root)
+{
+    map<pair<int,int>,vector<int>> m;
+    if(root==NULL)
+        return ;
+    m.clear();
+    int hd=0,d=0;    
+    genVerticalOrder(root,hd,d,m);
+    
+    for(auto it=m.begin();it!=m.end();it++)
+    
+    { 
+       // cout<<it->first.first<<" "<<it->first.second<<endl;
+    
+        for(int i=0;i<it->second.size();i++)
+            cout<<it->second[i]<<" ";
+     //   cout<<endl;
+    }
+    
+}
+
+
+
+
+
+
+
+*/
+
+
 map<pair<int,int>,vector<int>> m;
 
 void genVerticalOrder(Node *root,int hd,int d)
