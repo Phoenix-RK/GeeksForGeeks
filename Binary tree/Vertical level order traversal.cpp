@@ -139,57 +139,38 @@ struct Node
 };
  
 
-  
-void genVerticalOrder(Node *root,int hd,map<int,vector<int>>&m)
+*/
+map<pair<int,int>,vector<int>> m;
+
+void genVerticalOrder(Node *root,int hd,int d)
 {
     if(root==NULL)
         return ;
-    m[hd].push_back(root->data);
+    m[make_pair(hd,d)].push_back(root->data);
     
-    genVerticalOrder(root->left,hd-1,m);
-    genVerticalOrder(root->right,hd+1,m);
+    genVerticalOrder(root->left,hd-1,d+1);
+    genVerticalOrder(root->right,hd+1,d+1);
+    
     
 }
 
-
-// root: root node of the tree
 void verticalOrder(Node *root)
 {
-    //Your code here
-  
-    map<int,vector<int>> m;
-    int hd=0;
-    genVerticalOrder(root,hd,m);
     
-    map<int,vector<int>>::iterator it;
+    if(root==NULL)
+        return ;
+    m.clear();
+    int hd=0,d=0;    
+    genVerticalOrder(root,hd,d);
     
-    for(it=m.begin();it!=m.end();it++)
-    {
+    for(auto it=m.begin();it!=m.end();it++)
+    
+    { 
+        //cout<<it->first.first<<" "<<it->first.second<<endl;
+    
         for(int i=0;i<it->second.size();i++)
             cout<<it->second[i]<<" ";
-       
+       // cout<<endl;
     }
-    m.clear();
     
-}
-
-*/
-
-
-map< pair< int, int >, vector<int> > ma;
-void verticalOrderUtil( Node *root, int d, int w ) {
-if( !root ) return;
-ma[make_pair( w, d )].push_back( root->data );
-verticalOrderUtil( root->left, d + 1, w - 1 );
-verticalOrderUtil( root->right, d + 1, w + 1 );
-}
-
-void verticalOrder(Node *root)
-{
-ma.clear();
-verticalOrderUtil( root, 0, 0 );
-for( auto iter = ma.begin(); iter != ma.end(); iter++ ) {
-for( int i = 0; i < iter->second.size(); i++ )
-cout << iter->second[i] << " ";
-}
 }
