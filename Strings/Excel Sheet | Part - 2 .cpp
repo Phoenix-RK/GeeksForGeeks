@@ -1,6 +1,7 @@
 //Phoenix_RK
 
 /*
+https://practice.geeksforgeeks.org/problems/excel-sheet-part-2/0
 
 Given a string S that represents column title of an Excel sheet, find the number that represents that column.
 In excel A column is number 1, AA is 27 and so on.
