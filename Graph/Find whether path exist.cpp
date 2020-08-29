@@ -76,3 +76,69 @@ int main()
 	}
 	return 0;
 }
+
+
+/****************************************************************************/
+
+
+
+//Phoenix_RK
+#include<bits/stdc++.h>
+using namespace std;
+#define MAX 21
+int a[MAX][MAX];
+bool vis[MAX][MAX];
+
+bool search(int s1,int s2,int d1,int d2,int a[MAX][MAX],int n,bool vis[MAX][MAX])
+{
+    if(s1<0 || s2>=n || a[s1][s2]==0 || vis[s1][s2]==true)
+        return  false;
+        
+    if(a[s1][s2]==2)
+        return true;
+        
+    vis[s1][s2]=true;
+    if(search(s1,s2+1,d1,d2,a,n,vis) || search(s1,s2-1,d1,d2,a,n,vis) || search(s1+1,s2,d1,d2,a,n,vis) || search(s1-1,s2,d1,d2,a,n,vis))
+        return true;
+        
+    return false;
+    
+}
+
+
+int main()
+ {
+	//code
+	int T,n;
+	cin>>T;
+	while(T--)
+	{
+    	cin>>n;
+    	int s1,s2,d1,d2;
+    	
+    	for(int i=0;i<n;i++)
+    	{
+    	    for(int j=0;j<n;j++)
+    	   {
+    	       cin>>a[i][j];
+    	       if(a[i][j]==1)
+    	       {
+    	           s1=i;
+    	           s2=j;
+    	       }
+    	       else if(a[i][j]==2)
+    	       {
+    	           d1=i;
+    	           d2=j;
+    	       }
+    	   }
+    	}
+   
+    	memset(vis,false,sizeof(vis));
+    	if(search(s1,s2,d1,d2,a,n,vis))
+    	    cout<<"1"<<endl;
+    	else
+	        cout<<"0"<<endl;
+	}
+	return 0;
+}
