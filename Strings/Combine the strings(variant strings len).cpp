@@ -62,23 +62,19 @@ int main()
                 {
                     rr.push_back(leng);
                     rr_len+=leng; // combining multiple rr strings
-                    //cout<<"rr "<<leng<<endl;
                 }
                 else if ( s[i][0] == 'R' && s[i][leng- 1] == 'B' )
                 {
                     rb.push_back(leng); //storing the len of rb strings
-                     //cout<<"rb "<<leng<<endl;
                 }
                 else if ( s[i][0] == 'B' && s[i][leng- 1] == 'B' )
                 {
                     bb.push_back(leng);
                     bb_len+=leng; // combining multiple bb strings
-                     //cout<<"bb "<<leng<<endl;
                 }
                 else if ( s[i][0] == 'B' && s[i][leng- 1] == 'R' )
                 { 
                     br.push_back(leng); //storing the len of br strings	
-                    // cout<<"br "<<leng<<endl;
                 }
             }
             
@@ -95,15 +91,7 @@ int main()
                 ans=rr_len+bb_len;
                 sort(rb.begin(),rb.end(),greater<int>());
                 sort(br.begin(),br.end(),greater<int>());
-               /* for(int i=0;i<rb.size();i++)
-                    cout<<rb[i]<<" ";
-                cout<<endl;
-                */
-               /*
-               for(int i=0;i<br.size();i++) 
-                    cout<<br[i]<<" ";
-                cout<<endl;
-               */
+             
                 int no=min(rb.size(),br.size());
                 for(int i=0;i<no;i++)
                 {
