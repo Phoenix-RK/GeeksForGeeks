@@ -86,7 +86,7 @@ public:
         
         auto it=m.find(key); //this gives the iterator (ie) the position of key in map
         int val=(*(it->second)).second; //this gives the value for the key
-        q.erase(it->second);  //it->second is the iterator which gives the position of the key in the map
+        q.erase(it->second);  //it->second is the iterator which gives the position of the key in the list
         q.push_front({key,val});
         m[key]=q.begin();
         return val;
@@ -117,7 +117,7 @@ public:
         {
             //if already present then modify the position
             auto it = m.find(key);
-            q.erase(it->second);
+            q.erase(it->second);//it->second is the iterator which gives the position of the key in the list
             q.push_front({key,value});
             m[key]=q.begin();
         }
