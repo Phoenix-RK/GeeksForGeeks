@@ -186,7 +186,7 @@ vector<int> reverseLevelOrder(Node *root)
     vector<int> reverse;
     int h=height(root); 
     
-    for(int i=h;i>=0;i--)
+    for(int i=h-1;i>=0;i--)
     {
         getlevelval(root,i,reverse);
     }
