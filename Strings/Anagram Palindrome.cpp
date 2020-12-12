@@ -36,6 +36,9 @@ No
 
 #include<bits/stdc++.h>
 using namespace std;
+
+/*
+
 bool isFake(string a)
 {
     map<char,int> m;
@@ -58,6 +61,24 @@ bool isFake(string a)
     return true;
     
 }
+*/
+bool isFake(string a)
+{
+    int count=0;
+    map<char,int> m;
+    for(int i=0;i<a.size();i++)
+    {
+        m[a[i]]++;
+        if(m[a[i]]%2)
+            count++;
+        else
+            count--;
+    }
+    return (count<=1);
+}
+
+
+
 int main()
  {
 	//code
