@@ -118,62 +118,53 @@ struct Node
 /* Should return minimum distance between a and b
    in a tree with given root*/
 
- Node* lowestCommonAncestor(Node* root, Node* p, Node* q) 
- {
-        
-        if(root==NULL)
-            return NULL;
-        
-        if(root==p || root==q)
-            return root;
-        
-        Node *left=lowestCommonAncestor(root->left,p,q);
-        Node *right=lowestCommonAncestor(root->right,p,q);
-        
-        if(left!=NULL && right!=NULL)
-            return root;
-        
-        return left?left:right;
-    }
-       
- Node *findNode(Node* root,int target)
- {
-     if(root==NULL)
-        return NULL;
-        
-    if(root->data==target)
+/* A binary tree node
+struct Node
+{
+    int data;
+    Node* left, * right;
+}; */
+
+/* Should return minimum distance between a and b
+   in a tree with given root*/
+   
+Node* findNode(Node* root,int x)
+{
+    if(!root || root->data == x)
+        return root;
+    Node* l=findNode(root->left,x);
+    return l ? l :findNode(root->right,x);
+}
+
+Node* findLca(Node* root,int a,int b)
+{
+    if(!root || root->data==a|| root->data==b)
         return root;
         
-    Node* l=findNode(root->left,target);
+    Node* l=findLca(root->left,a,b);
+    Node* r=findLca(root->right,a,b);
     
-    if(!l)
-    return findNode(root->right,target);
-    
-    return l;
- }
- 
- int distance(Node *root,int p)
- {
-     if(root==NULL)
+    if(l && r)
+        return root;
+    return l?l:r;
+}
+   
+int distance(Node* root,int x)
+{
+    if(!root)
         return -1;
-        
-     int dist=-1;
-     
-     if(root->data==p || (dist=distance(root->left,p))>=0 || (dist=distance(root->right,p))>=0)
-     return dist+1;
-     
-     return dist;
- }
+    int dist=-1;
+    if(root->data==x || (dist=distance(root->left,x))>=0 || (dist=distance(root->right,x))>=0)
+        return dist+1;
+    
+    return dist;
+    
+    
+    
+}
 int findDist(Node* root, int a, int b) {
     // Your code here
     
-    Node *p=findNode(root,a);
-    Node *q=findNode(root,b);
-    Node *lca= lowestCommonAncestor(root,p,q);
-    //cout<<lca->data<<" ";
-    int dist1=distance(lca,a);
-    int dist2=distance(lca,b);
-  //  cout<<dist1<<" "<<dist2<<endl;
-    return dist1+dist2;
-    
+    Node* lca=findLca(root,a,b);
+    return distance(lca,a)+distance(lca,b);
 }
