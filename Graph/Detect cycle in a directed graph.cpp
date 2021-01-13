@@ -6,6 +6,7 @@ https://practice.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1
 
 Given a directed graph, the task is to complete the method isCyclic() to detect if there is a cycle in the graph or not. You should not read any input from stdin/console. There are multiple test cases. For each test case, this method will be called individually.
 
+
 */
 
 
@@ -14,6 +15,14 @@ Given a directed graph, the task is to complete the method isCyclic() to detect 
 *   V: number of vertices
 *   adj[]: representation of graph
 */
+
+/*
+Idea: 
+1)Traverse through each node in DFS & while traversing keep track of parent
+2)At some point, if for a node, its adjacent node is visted and that adjacent node is not its parent, then it means that we have detected a cycle
+
+*/
+
 
 bool CycUtil(int i,bool* vis,bool* rec,vector<int> adj[])
 {
