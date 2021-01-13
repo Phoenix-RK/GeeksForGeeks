@@ -19,51 +19,27 @@ using namespace std;
 *  vis[]: array to keep track of visited vertex
 */
 
-
-void dfs(int s, vector<int> g[], bool vis[])
+void dfsUtil(vector<int> g[],int curr,vector<int> &res,bool vis[])
 {
-    
-    // Your code here
-    vis[s]=true;
-    cout<<s<<" ";
-    for(auto it=g[s].begin();it!=g[s].end();it++)
+ 
+    vis[curr]=true;
+    res.push_back(curr);
+    vector<int>::iterator it;
+    for(it=g[curr].begin();it!=g[curr].end();it++)
     {
         if(!vis[*it])
         {
-            dfs(*it,g,vis);
+            dfsUtil(g,*it,res,vis);
         }
     }
-
 }
 
-// { Driver Code Starts.
-
-int main()
+vector <int> dfs(vector<int> g[], int N)
 {
-    int T;
-    cin>>T;
-    while(T--)
-    {
-
-        int N, E;
-        cin>>N>>E;
-        
-        vector<int> g[N];
-        bool vis[N];
-        
-        memset(vis, false, sizeof(vis));
-        
-        for(int i=0;i<E;i++)
-        {
-            int u,v;
-            cin>>u>>v;
-            g[u].push_back(v);
-            g[v].push_back(u);
-        }
-
-        dfs(0,g,vis);
-        
-        cout<<endl;
-
-    }
-}  // } Driver Code Ends
+    // Your code here
+    bool vis[N];
+    memset(vis,false,sizeof(vis));
+    vector<int> res;
+    dfsUtil(g,0,res,vis);
+    return res;
+}
