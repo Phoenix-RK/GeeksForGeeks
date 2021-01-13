@@ -16,13 +16,6 @@ Given a directed graph, the task is to complete the method isCyclic() to detect 
 *   adj[]: representation of graph
 */
 
-/*
-Idea: 
-1)Traverse through each node in DFS & while traversing keep track of parent
-2)At some point, if for a node, its adjacent node is visted and that adjacent node is not its parent, then it means that we have detected a cycle
-
-*/
-
 
 bool CycUtil(int i,bool* vis,bool* rec,vector<int> adj[])
 {
