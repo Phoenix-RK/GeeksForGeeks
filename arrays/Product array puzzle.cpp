@@ -111,5 +111,27 @@ vector<long long int> productExceptSelf(vector<long long int>& nums, int n) {
     return res;
   
 }
+// Further this can be done with No division Operator and o(2*n) extra space 
+vector<long long int> productExceptSelf(vector<long long int>& nums, int n) {
+   vector<long long int> right(n);//store product from 0 to i-1;
+   vector<long long int> left(n);//store product from i+1 to n-1;
+//   nums[i]=right[i]*left[i];
+    left[0]=1;
+    for(int i=1;i<n;i++){
+        left[i]=left[i-1]*nums[i-1];
+    }
+    right[n-1]=1;
+    for(int i=n-2;i>=0;i--){
+        right[i]=right[i+1]*nums[i+1];
+    }
+    for(int i=0;i<n;i++){
+        nums[i]=right[i]*left[i];
+    }
+    return nums;
+}
+// dry run on [1,2,3,4,5]
+//  right array  [1,1,2,6,24]
+//  left array   [120,60,20,5,1]
+// product array --> [120,60,40,30,24]
 
 
